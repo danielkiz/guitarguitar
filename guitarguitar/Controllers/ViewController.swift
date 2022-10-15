@@ -91,8 +91,13 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("clicked")
-        performSegue(withIdentifier: "homeToGuitar", sender: self)
+        if collectionView == self.categoriesCollectionView {
+            print("clicked category")
+            performSegue(withIdentifier: "homeToCategory", sender: self)
+        } else if collectionView == self.guitarsCollectionView {
+            print("clicked guitar")
+            performSegue(withIdentifier: "homeToGuitar", sender: self)
+        }
     }
     
 }

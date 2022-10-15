@@ -20,15 +20,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Loading our guitars
         loadGuitars()
         
+        // Setting the categories collection view and cell
+        categoriesCollectionView.dataSource = self
+        guitarsCollectionView.reloadData()
+        categoryCollectionViewCell.layer.cornerRadius = 15
+        categoryCollectionViewCell.layer.borderWidth = 5
+        
+        // Making the poster view prettier
         posterView.layer.cornerRadius = 15
         posterView.layer.masksToBounds = true
-        
-        categoryCollectionViewCell.layer.cornerRadius = 15
-        categoryCollectionViewCell.layer.masksToBounds = true
-        categoryCollectionViewCell.layer.borderColor = UIColor.black.cgColor
-        categoryCollectionViewCell.layer.borderWidth = 1
     }
     
     private func loadGuitars() {
@@ -48,13 +51,27 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "guitarCell", for: indexPath) as! GuitarCollectionViewCell
-        let guitar = guitarViewModel.cellForRowAt(indexPath: indexPath)
-        cell.setCellWithValuesOf(guitar)
-        return cell
+        let dummyCell = UICollectionViewCell()
+        if collectionView == self.categoriesCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "categoryCell", for: indexPath) as! CategoryCollectionViewCell
+            print(categoryCollectionViewCell.basicCategories[indexPath.row])
+            cell.categoryLabel.text = categoryCollectionViewCell.basicCategories[indexPath.row]
+            return cell
+        } else if collectionView == self.guitarsCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "guitarCell", for: indexPath) as! GuitarCollectionViewCell
+            let guitar = guitarViewModel.cellForRowAt(indexPath: indexPath)
+            cell.setCellWithValuesOf(guitar)
+            return cell
+        }
+        return dummyCell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return guitarViewModel.numberOfItemsInSectionHome()
+        if collectionView == self.categoriesCollectionView {
+            return categoryCollectionViewCell.basicCategories.count
+        } else if collectionView == self.guitarsCollectionView {
+            return guitarViewModel.numberOfItemsInSectionHome()
+        }
+        return 2
     }
 }

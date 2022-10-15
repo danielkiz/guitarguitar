@@ -33,7 +33,7 @@ class GuitarViewModel {
     }
     
     func numberOfItemsInSectionHome() -> Int {
-        return 4
+        return 8
     }
     
     func cellForRowAt(indexPath: IndexPath) -> Guitar {

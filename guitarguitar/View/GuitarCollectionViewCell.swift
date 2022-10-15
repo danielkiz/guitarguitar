@@ -28,7 +28,7 @@ class GuitarCollectionViewCell: UICollectionViewCell {
             self.stockLabel.text = "Out of Stock"
         }
         
-        self.priceLabel.text = String(format: "%.2f", price!)
+        self.priceLabel.text = "£\(String(format: "%.2f", price!))"
         
         guard let guitarImageURL = URL(string: imageUrl!) else {
             self.imageView.image = UIImage(named: "guitarguitar2")

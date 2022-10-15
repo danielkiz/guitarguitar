@@ -167,9 +167,9 @@
 				3B22F55528FAAE13009D7C58 /* ViewModel */,
 				3B79333828F9E6C000400563 /* Main.storyboard */,
 				3B79333E28F9E6C500400563 /* Assets.xcassets */,
-				3B79334028F9E6C500400563 /* LaunchScreen.storyboard */,
 				3B79334328F9E6C500400563 /* Info.plist */,
 				3B79333B28F9E6C000400563 /* guitarguitar.xcdatamodeld */,
+				3B79334028F9E6C500400563 /* LaunchScreen.storyboard */,
 			);
 			path = guitarguitar;
 			sourceTree = "<group>";

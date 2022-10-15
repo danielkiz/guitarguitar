@@ -22,7 +22,7 @@ class GuitarCollectionViewCell: UICollectionViewCell {
         
         self.titleLabel.text = title!
         
-        if stock! > 1 {
+        if stock! >= 1 {
             self.stockLabel.text = "In Stock"
         } else {
             self.stockLabel.text = "Out of Stock"

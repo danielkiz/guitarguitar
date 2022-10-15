@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     let categoryCollectionViewCell = CategoryCollectionViewCell()
     private var guitarViewModel = GuitarViewModel()
     
+    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var posterView: UIView!
     @IBOutlet weak var categoriesCollectionView: UICollectionView!
     @IBOutlet weak var guitarsCollectionView: UICollectionView!
@@ -34,9 +35,13 @@ class ViewController: UIViewController {
         guitarViewModel.fetchGuitarsData { [weak self] in
             self?.guitarsCollectionView.dataSource = self
             self?.guitarsCollectionView.reloadData()
+            self!.loadingView.isHidden = true
         }
     }
-
+    
+    @IBAction func openWebsiteButton(_ sender: Any) {
+        UIApplication.shared.openURL(NSURL(string: "https://www.guitarguitar.co.uk")! as URL)
+    }
 
 }
 

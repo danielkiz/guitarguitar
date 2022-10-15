@@ -28,7 +28,7 @@
         <!--Home-->
         <scene sceneID="zAY-Fy-RT9">
             <objects>
-                <viewController id="opE-Gy-xOc" customClass="ViewController" customModule="guitarguitar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="opE-Gy-xOc" customClass="ViewController" customModule="guitarguitar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GRy-Gx-sFf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -266,16 +266,18 @@
                         <outlet property="guitarsCollectionView" destination="i6c-CP-Ybp" id="io8-ny-ZkT"/>
                         <outlet property="loadingView" destination="AYb-qk-kbI" id="63u-2x-R3E"/>
                         <outlet property="posterView" destination="uif-40-CkG" id="DHm-Ys-Wye"/>
+                        <segue destination="zhM-qX-VAH" kind="show" identifier="homeToCategory" id="6ls-ed-GGd"/>
+                        <segue destination="7n7-6n-eZ7" kind="show" identifier="homeToGuitar" id="2XC-lh-3PS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A1M-Mi-EGE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-539.13043478260875" y="-205.58035714285714"/>
         </scene>
-        <!--View Controller-->
+        <!--Guitar View Controller-->
         <scene sceneID="xut-Wn-WKB">
             <objects>
-                <viewController id="7n7-6n-eZ7" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="7n7-6n-eZ7" customClass="GuitarViewController" customModule="guitarguitar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OHV-GH-crD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -327,6 +329,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="specAction:" destination="7n7-6n-eZ7" eventType="touchUpInside" id="cVm-3S-Qa9"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmT-8h-2Ox">
                                         <rect key="frame" x="52" y="676" width="201" height="62"/>
@@ -355,23 +360,46 @@
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="multiply" catalog="system" title=""/>
+                                        <connections>
+                                            <action selector="closeAction:" destination="7n7-6n-eZ7" eventType="touchUpInside" id="KWP-9B-rcG"/>
+                                        </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9cH-WG-IY9">
+                                        <rect key="frame" x="39" y="93" width="336" height="202"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <string key="text">&lt;p&gt;The first choice in experiencing acoustic-electric music. Derived from FG800 \r\nwhich has the solid spruce top and nato/okume back and sides, FGX800CII has a \r\ncutaway body and an electric system. Yamaha's proprietary under-saddle piezo \r\npickup and System66 analog preamp ensure the solid plugged-in performance.&lt;/p&gt;\r\n\r\n&lt;p&gt;*&lt;strong&gt;9 Volt battery not included.&lt;/strong&gt;&lt;/p&gt;\r\n\r\n</string>
+                                        <color key="textColor" systemColor="labelColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="enH-dd-gwx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                     </view>
+                    <navigationItem key="navigationItem" id="gwn-cX-m8u"/>
+                    <connections>
+                        <outlet property="specsDescription" destination="9cH-WG-IY9" id="OX3-EW-mh4"/>
+                        <outlet property="specsTitleLabel" destination="vHS-vd-eFf" id="uGw-Mv-hh4"/>
+                        <outlet property="specsView" destination="czO-G2-kbD" id="cxF-bW-W5E"/>
+                        <outlet property="startingImageView" destination="XOU-Ne-6lU" id="HDR-yO-MV2"/>
+                        <outlet property="startingPrice" destination="G9Z-BK-xXP" id="HNo-zf-1TL"/>
+                        <outlet property="startingTitleLabel" destination="hoL-ZO-a0K" id="7zD-jB-H00"/>
+                        <outlet property="startingView" destination="PwO-F5-X8O" id="FeL-hi-AXe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54G-Gr-xps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1163.768115942029" y="-206.25"/>
         </scene>
-        <!--View Controller-->
+        <!--Guitars View Controller-->
         <scene sceneID="qI2-iU-c5A">
             <objects>
-                <viewController id="zhM-qX-VAH" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="zhM-qX-VAH" customClass="GuitarsViewController" customModule="guitarguitar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dep-VH-q1P">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,6 +475,11 @@
                         <viewLayoutGuide key="safeArea" id="PXc-qn-gHe"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="hbk-D1-Ggi"/>
+                    <connections>
+                        <outlet property="guitarsCollectionView" destination="GWS-dR-zMv" id="rqD-6F-79B"/>
+                        <segue destination="7n7-6n-eZ7" kind="show" identifier="categoryToGuitar" id="0VD-5r-LAE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y3i-YV-D2O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -455,7 +488,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ob9-Je-Lec">
             <objects>
-                <tabBarController id="9Yq-qS-YGC" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" id="9Yq-qS-YGC" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3k2-UI-bt7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -471,6 +504,9 @@
             <point key="canvasLocation" x="-1431" y="98"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="0VD-5r-LAE"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="06061917015418f" width="368" height="900"/>
         <image name="chevron.backward" catalog="system" width="96" height="128"/>

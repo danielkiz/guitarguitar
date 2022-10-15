@@ -18,7 +18,7 @@ class GuitarCollectionViewCell: UICollectionViewCell {
         updateUI(title: guitar.itemName, price: guitar.salesPrice, stock: guitar.qtyInStock, imageUrl: guitar.pictureMain)
     }
     
-    private func updateUI(title: String?, price: Double?, stock: Int?, imageUrl: String?) {
+    func updateUI(title: String?, price: Double?, stock: Int?, imageUrl: String?) {
         
         self.titleLabel.text = title!
         
@@ -42,7 +42,7 @@ class GuitarCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Get image data
-    private func getImageDataFrom(url: URL) {
+    func getImageDataFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("DataTask error: \(error.localizedDescription)")

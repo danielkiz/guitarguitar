@@ -10,14 +10,14 @@ import Foundation
 class GuitarViewModel {
     
     private let apiService = ApiService()
-    private var guitars = [Guitar]()
+    var guitars = [Guitar]()
     
     func fetchGuitarsData(completion: @escaping () -> ()) {
-
+        
         apiService.getGuitarsData { [weak self] (result) in
             switch result {
-            case .success(let listOf):
-                self?.guitars = listOf
+            case .success(let guitarList):
+                self?.guitars = guitarList
                 completion()
             case .failure(let error):
                 print("Error processing JSON data: \(error)")
@@ -36,7 +36,7 @@ class GuitarViewModel {
         return 8
     }
     
-    func cellForRowAt(indexPath: IndexPath) -> Guitar {
-        return guitars[indexPath.row ]
+    func cellForAt(indexPath: IndexPath) -> Guitar {
+        return guitars[indexPath.row]
     }
 }

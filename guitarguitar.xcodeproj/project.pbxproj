@@ -13,6 +13,8 @@
 		3B22F55A28FAAE8E009D7C58 /* GuitarSongModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F55928FAAE8E009D7C58 /* GuitarSongModel.swift */; };
 		3B22F55C28FAAF73009D7C58 /* GuitarSongViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F55B28FAAF73009D7C58 /* GuitarSongViewModel.swift */; };
 		3B22F55E28FACDA9009D7C58 /* GuitarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F55D28FACDA9009D7C58 /* GuitarCollectionViewCell.swift */; };
+		3B22F56028FAEC65009D7C58 /* GuitarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F55F28FAEC65009D7C58 /* GuitarsViewController.swift */; };
+		3B22F56228FAF464009D7C58 /* GuitarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B22F56128FAF464009D7C58 /* GuitarViewController.swift */; };
 		3B79333328F9E6C000400563 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79333228F9E6C000400563 /* AppDelegate.swift */; };
 		3B79333528F9E6C000400563 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79333428F9E6C000400563 /* SceneDelegate.swift */; };
 		3B79333728F9E6C000400563 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79333628F9E6C000400563 /* ViewController.swift */; };
@@ -50,6 +52,8 @@
 		3B22F55928FAAE8E009D7C58 /* GuitarSongModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarSongModel.swift; sourceTree = "<group>"; };
 		3B22F55B28FAAF73009D7C58 /* GuitarSongViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarSongViewModel.swift; sourceTree = "<group>"; };
 		3B22F55D28FACDA9009D7C58 /* GuitarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B22F55F28FAEC65009D7C58 /* GuitarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarsViewController.swift; sourceTree = "<group>"; };
+		3B22F56128FAF464009D7C58 /* GuitarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuitarViewController.swift; sourceTree = "<group>"; };
 		3B79332F28F9E6C000400563 /* guitarguitar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guitarguitar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B79333228F9E6C000400563 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B79333428F9E6C000400563 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			isa = PBXGroup;
 			children = (
 				3B79333628F9E6C000400563 /* ViewController.swift */,
+				3B22F56128FAF464009D7C58 /* GuitarViewController.swift */,
+				3B22F55F28FAEC65009D7C58 /* GuitarsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -322,6 +328,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B22F56228FAF464009D7C58 /* GuitarViewController.swift in Sources */,
 				3B22F54F28FAAC01009D7C58 /* GuitarViewModel.swift in Sources */,
 				3B22F55E28FACDA9009D7C58 /* GuitarCollectionViewCell.swift in Sources */,
 				3B22F55128FAADD1009D7C58 /* GuitarModel.swift in Sources */,
@@ -332,6 +339,7 @@
 				3B22F55A28FAAE8E009D7C58 /* GuitarSongModel.swift in Sources */,
 				3B22F54D28FAA3CB009D7C58 /* ApiService.swift in Sources */,
 				3B79333528F9E6C000400563 /* SceneDelegate.swift in Sources */,
+				3B22F56028FAEC65009D7C58 /* GuitarsViewController.swift in Sources */,
 				3B22F55C28FAAF73009D7C58 /* GuitarSongViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

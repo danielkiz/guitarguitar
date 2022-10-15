@@ -12,18 +12,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var categoryLabel: UILabel!
     let basicCategories = ["All Guitars", "Acoustics", "Basses", "Electrics"]
     
-    override var isSelected: Bool {
-        didSet {
-            if isSelected {
-                layer.backgroundColor = UIColor.orange.cgColor
-                categoryLabel.textColor = UIColor.white
-            } else {
-                layer.backgroundColor = UIColor.white.cgColor
-                categoryLabel.textColor = UIColor.black
-            }
-        }
-    }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.backgroundColor = hexStringToUIColor(hex: "#eaeded").cgColor

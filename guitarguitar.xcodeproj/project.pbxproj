@@ -26,6 +26,7 @@
 		3B79335728F9E6C500400563 /* guitarguitarUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79335628F9E6C500400563 /* guitarguitarUITests.swift */; };
 		3B79335928F9E6C500400563 /* guitarguitarUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79335828F9E6C500400563 /* guitarguitarUITestsLaunchTests.swift */; };
 		3B79336628FA158400400563 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B79336528FA158400400563 /* BrandCollectionViewCell.swift */; };
+		3B81DD1C28FBF66C0069A0CF /* FavouritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B81DD1B28FBF66C0069A0CF /* FavouritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		3B79335628F9E6C500400563 /* guitarguitarUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guitarguitarUITests.swift; sourceTree = "<group>"; };
 		3B79335828F9E6C500400563 /* guitarguitarUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guitarguitarUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3B79336528FA158400400563 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
+		3B81DD1B28FBF66C0069A0CF /* FavouritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				3B79333628F9E6C000400563 /* ViewController.swift */,
 				3B22F56128FAF464009D7C58 /* GuitarViewController.swift */,
 				3B22F55F28FAEC65009D7C58 /* GuitarsViewController.swift */,
+				3B81DD1B28FBF66C0069A0CF /* FavouritesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 				3B22F54D28FAA3CB009D7C58 /* ApiService.swift in Sources */,
 				3B79333528F9E6C000400563 /* SceneDelegate.swift in Sources */,
 				3B22F56028FAEC65009D7C58 /* GuitarsViewController.swift in Sources */,
+				3B81DD1C28FBF66C0069A0CF /* FavouritesViewController.swift in Sources */,
 				3B22F55C28FAAF73009D7C58 /* GuitarSongViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -35,6 +35,9 @@ class GuitarViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        listenSpotifyButton.titleLabel?.textAlignment = .center
+        listenYoutubeButton.titleLabel?.textAlignment = .center
+        
         startingFavouritesButton.layer.cornerRadius = 12
         startingFavouritesButton.layer.masksToBounds = true
         
@@ -133,11 +136,11 @@ class GuitarViewController: UIViewController {
         })
     }
     
-    @IBAction func closeAction(_ sender: Any) {
-        UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.specsView.isHidden = true
-        })
+    
+    @IBAction func backAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
+    
     
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
         if gesture.direction == .up {

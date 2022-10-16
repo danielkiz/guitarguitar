@@ -14,6 +14,7 @@ class GuitarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
     @IBOutlet weak var brandLabel: UILabel!
+    @IBOutlet weak var addFavouriteButton: UIButton!
     
     func setCellWithValuesOf(_ guitar: Guitar) {
         updateUI(title: guitar.itemName, price: guitar.salesPrice, stock: guitar.qtyInStock, imageUrl: guitar.pictureMain, brandName: guitar.brandName)
@@ -60,6 +61,10 @@ class GuitarCollectionViewCell: UICollectionViewCell {
                 }
             }
         }.resume()
+    }
+    
+    @IBAction func addFavouriteAction(_ sender: Any) {
+        
     }
     
 }

@@ -74,7 +74,6 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         let dummyCell = UICollectionViewCell()
         if collectionView == self.brandsCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brandCell", for: indexPath) as! BrandCollectionViewCell
-            print(brandCollectionViewCell.topBrands[indexPath.row])
             cell.brandLabel.text = brandCollectionViewCell.topBrands[indexPath.row]
             return cell
         } else if collectionView == self.guitarsCollectionView {
@@ -97,12 +96,10 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.brandsCollectionView {
-            print("clicked category")
             brandCollectionViewCell.backgroundColor = brandCollectionViewCell.hexStringToUIColor(hex: "#ec661a")
             brandCollectionViewCell.tintColor = UIColor.white
             performSegue(withIdentifier: "homeToSpecial", sender: self)
         } else if collectionView == self.guitarsCollectionView {
-            print("clicked guitar")
             performSegue(withIdentifier: "homeToGuitar", sender: self)
         }
         

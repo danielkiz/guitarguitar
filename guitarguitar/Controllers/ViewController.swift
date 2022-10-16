@@ -22,18 +22,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Loading our guitars
         loadGuitars()
         
-        // Setting the categories collection view and cell
         categoriesCollectionView.dataSource = self
         categoriesCollectionView.delegate = self
-        guitarsCollectionView.reloadData()
         categoryCollectionViewCell.layer.cornerRadius = 15
         categoryCollectionViewCell.layer.borderWidth = 5
         guitarsCollectionView.isUserInteractionEnabled = true
         
-        // Making the poster view prettier
         posterView.layer.cornerRadius = 15
         posterView.layer.masksToBounds = true
     }
@@ -53,11 +49,22 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? GuitarViewController {
-            if let indexPath = guitarsCollectionView?.indexPathsForSelectedItems?.first {
-                destination.guitar = guitars[indexPath.row]
+        if segue.identifier == "homeToGuitar" {
+            if let destination = segue.destination as? GuitarViewController {
+                destination.guitars = guitars
+                if let indexPath = guitarsCollectionView?.indexPathsForSelectedItems?.first {
+                    destination.guitar = guitars[indexPath.row]
+                }
+                //destination.guitars = guitars
             }
-            destination.guitars = guitars
+        /*} else if segue.identifier == "homeToCategory" {
+            if let destination = segue.destination as? GuitarsViewController {
+                destination.guitars = guitars
+                if let indexPath = guitarsCollectionView?.indexPathsForSelectedItems?.first {
+                    destination.forwarder = categoryCollectionViewCell.basicCategories[indexPath.row]
+                }
+            }
+        }*/
         }
     }
 
@@ -85,7 +92,7 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
         if collectionView == self.categoriesCollectionView {
             return categoryCollectionViewCell.basicCategories.count
         } else if collectionView == self.guitarsCollectionView {
-            return guitarViewModel.numberOfItemsInSectionHome()
+            return 14
         }
         return 2
     }
@@ -93,6 +100,8 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.categoriesCollectionView {
             print("clicked category")
+            categoryCollectionViewCell.backgroundColor = categoryCollectionViewCell.hexStringToUIColor(hex: "#ec661a")
+            categoryCollectionViewCell.tintColor = UIColor.white
             performSegue(withIdentifier: "homeToCategory", sender: self)
         } else if collectionView == self.guitarsCollectionView {
             print("clicked guitar")

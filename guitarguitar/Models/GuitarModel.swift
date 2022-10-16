@@ -41,3 +41,7 @@ struct Guitar: Decodable {
              pickup, bodyShape, createdOn
     }
 }
+
+struct GuitarData: Decodable {
+    var guitarData: [Guitar] = []
+}

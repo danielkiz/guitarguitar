@@ -9,10 +9,10 @@ import Foundation
 
 class GuitarSongViewModel {
     
-    private let apiService = ApiService()
-    private var guitarSong = [GuitarSong]()
+    let apiService = ApiService()
+    var guitarSong = [GuitarSong]()
     
-    func fetchGuitarsData(completion: @escaping () -> ()) {
+    func fetchGuitarSongsData(completion: @escaping () -> ()) {
 
         apiService.getGuitarSongsData { [weak self] (result) in 
             switch result {
@@ -23,5 +23,11 @@ class GuitarSongViewModel {
                 print("Error processing JSON data: \(error)")
             }
         }
+    }
+    
+    func searchGuitarSongs(skU_ID: String) -> GuitarSong {
+        let guitarSong: GuitarSong = GuitarSongData().songData.filter({ $0.skU_ID == skU_ID }).first!
+        return guitarSong
+            
     }
 }

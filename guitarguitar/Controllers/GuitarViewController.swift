@@ -10,8 +10,13 @@ import UIKit
 class GuitarViewController: UIViewController {
 
     var guitar: Guitar?
-    let guitarModel = GuitarModel()
+    var guitarModel = GuitarModel()
+    var guitarSongViewModel = GuitarSongViewModel()
+    var guitarSongs = [GuitarSong]()
     var guitars = [Guitar]()
+    
+    var spotifyLink: String?
+    var youtubeLink: String?
     
     @IBOutlet weak var startingView: UIView!
     @IBOutlet weak var startingImageView: UIImageView!
@@ -23,10 +28,13 @@ class GuitarViewController: UIViewController {
     @IBOutlet weak var specsDescription: UITextView!
     @IBOutlet weak var brandPickupLabel: UILabel!
     @IBOutlet weak var colourBodyshapeLabel: UILabel!
-    
+    @IBOutlet weak var listenSpotifyButton: UIButton!
+    @IBOutlet weak var listenYoutubeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loadGuitarSongs(id: (guitar?.skU_ID!)!)
         
         startingTitleLabel.text = guitar?.itemName!
         specsTitleLabel.text = guitar?.itemName!
@@ -53,6 +61,19 @@ class GuitarViewController: UIViewController {
         specsDescription.text = htmlLessString
     }
     
+    func loadGuitarSongs(id: String) {
+        guitarSongViewModel.fetchGuitarSongsData { [weak self] in
+            let guitarSong = GuitarSongData().songData.filter({ $0.skU_ID == id}).first
+            if guitarSong != nil {
+                self!.spotifyLink = "https://open.spotify.com/track/\(guitarSong?.spotifyId!)"
+                self!.youtubeLink = guitarSong?.youtubeUrl!
+            } else {
+                self!.listenSpotifyButton.titleLabel!.text = "Not Available"
+                self!.listenYoutubeButton.titleLabel!.text = "Not Available"
+            }
+        }
+    }
+    
     func getImageDataFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -60,7 +81,6 @@ class GuitarViewController: UIViewController {
                 return
             }
             guard let data = data else {
-                // Handle Empty Data
                 print("Empty Data")
                 return
             }
@@ -72,12 +92,30 @@ class GuitarViewController: UIViewController {
         }.resume()
     }
     
+    
+    @IBAction func listenSpotifyAction(_ sender: Any) {
+        if spotifyLink?.isEmpty == false {
+            UIApplication.shared.openURL(NSURL(string: spotifyLink!)! as URL)
+        }
+    }
+    
+    @IBAction func listenYoutubeAction(_ sender: Any) {
+        if youtubeLink?.isEmpty == false {
+            UIApplication.shared.openURL(NSURL(string: youtubeLink!)! as URL)
+        }
+    }
+    
+    
     @IBAction func specAction(_ sender: Any) {
-        specsView.isHidden = false
+        UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.specsView.isHidden = false
+        })
     }
     
     @IBAction func closeAction(_ sender: Any) {
-        specsView.isHidden = true
+        UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.specsView.isHidden = true
+        })
     }
     
 }

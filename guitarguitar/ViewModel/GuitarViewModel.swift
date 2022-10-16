@@ -9,7 +9,7 @@ import Foundation
 
 class GuitarViewModel {
     
-    private let apiService = ApiService()
+    let apiService = ApiService()
     var guitars = [Guitar]()
     
     func fetchGuitarsData(completion: @escaping () -> ()) {
@@ -25,6 +25,18 @@ class GuitarViewModel {
         }
     }
     
+    func searchGuitars(skU_ID: String = "", productDetail: String = "") -> [Guitar] {
+        if skU_ID.isEmpty == false {
+            var guitar: [Guitar] = GuitarData().guitarData.filter({ $0.skU_ID == skU_ID })
+            return guitar
+        } else if productDetail.isEmpty == false {
+            var guitar: [Guitar] = GuitarData().guitarData.filter({ $0.productDetail == productDetail })
+            return guitar
+        }
+        return guitars
+    }
+    
+    
     func numberOfItemsInSection(section: Int) -> Int {
         if guitars.count != 0 {
             return guitars.count
@@ -32,11 +44,8 @@ class GuitarViewModel {
         return 0
     }
     
-    func numberOfItemsInSectionHome() -> Int {
-        return 8
-    }
-    
     func cellForAt(indexPath: IndexPath) -> Guitar {
         return guitars[indexPath.row]
     }
+    
 }

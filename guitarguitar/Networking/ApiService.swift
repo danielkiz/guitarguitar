@@ -7,20 +7,23 @@
 
 import Foundation
 
+struct Constants {
+
+    static let guitarsURL = "https://services.guitarguitar.co.uk/WebService/api/hackathon/guitars"
+    static let guitarSongsURL = "https://services.guitarguitar.co.uk/WebService/api/hackathon/guitarswithsongs"
+    
+}
+
 class ApiService {
     
-    private var dataTask: URLSessionDataTask?
+    var dataTask: URLSessionDataTask?
     
     func getGuitarsData(completion: @escaping (Result<[Guitar], Error>) -> Void) {
-            
-        let guitarsURL = "https://services.guitarguitar.co.uk/WebService/api/hackathon/guitars"
         
-        guard let url = URL(string: guitarsURL) else {return}
+        guard let url = URL(string: Constants.guitarsURL) else { return }
         
-        // Create URL Session - work on the background
         dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            // Handle Error
             if let error = error {
                 completion(.failure(error))
                 print("DataTask error: \(error.localizedDescription)")
@@ -28,7 +31,6 @@ class ApiService {
             }
             
             guard let response = response as? HTTPURLResponse else {
-                // Handle Empty Response
                 print("Empty Response")
                 return
             }
@@ -36,17 +38,14 @@ class ApiService {
             print("Response status code: \(response.statusCode)")
             
             guard let data = data else {
-                // Handle Empty Data
                 print("Empty Data")
                 return
             }
             
             do {
-                // Parse the data
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([Guitar].self, from: data)
                 
-                // Back to the main thread
                 DispatchQueue.main.async {
                     completion(.success(jsonData))
                 }
@@ -59,15 +58,11 @@ class ApiService {
     }
     
     func getGuitarSongsData(completion: @escaping (Result<[GuitarSong], Error>) -> Void) {
-            
-        let guitarSongsURL = "https://services.guitarguitar.co.uk/WebService/api/hackathon/guitarswithsongs"
         
-        guard let url = URL(string: guitarSongsURL) else {return}
+        guard let url = URL(string: Constants.guitarSongsURL) else { return }
         
-        // Create URL Session - work on the background
         dataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
-            // Handle Error
             if let error = error {
                 completion(.failure(error))
                 print("DataTask error: \(error.localizedDescription)")
@@ -75,7 +70,6 @@ class ApiService {
             }
             
             guard let response = response as? HTTPURLResponse else {
-                // Handle Empty Response
                 print("Empty Response")
                 return
             }
@@ -83,17 +77,14 @@ class ApiService {
             print("Response status code: \(response.statusCode)")
             
             guard let data = data else {
-                // Handle Empty Data
                 print("Empty Data")
                 return
             }
             
             do {
-                // Parse the data
                 let decoder = JSONDecoder()
                 let jsonData = try decoder.decode([GuitarSong].self, from: data)
                 
-                // Back to the main thread
                 DispatchQueue.main.async {
                     completion(.success(jsonData))
                 }

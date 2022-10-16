@@ -1,5 +1,5 @@
 //
-//  CategoryCollectionViewCell.swift
+//  BrandCollectionViewCell.swift
 //  guitarguitar
 //
 //  Created by Danya on 10/14/22.
@@ -7,10 +7,11 @@
 
 import UIKit
 
-class CategoryCollectionViewCell: UICollectionViewCell {
+class BrandCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var categoryLabel: UILabel!
-    let basicCategories = ["All Guitars", "Acoustics", "Basses", "Electrics"]
+    @IBOutlet weak var brandLabel: UILabel!
+    
+    let topBrands = ["Yamaha", "Martin", "Alvarez", "Gretsch", "Sigma", "Epiphone"]
     
     override func layoutSubviews() {
         super.layoutSubviews()

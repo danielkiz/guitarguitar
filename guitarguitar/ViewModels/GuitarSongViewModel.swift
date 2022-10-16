@@ -24,10 +24,4 @@ class GuitarSongViewModel {
             }
         }
     }
-    
-    func searchGuitarSongs(skU_ID: String) -> GuitarSong {
-        let guitarSong: GuitarSong = GuitarSongData().songData.filter({ $0.skU_ID == skU_ID }).first!
-        return guitarSong
-            
-    }
 }

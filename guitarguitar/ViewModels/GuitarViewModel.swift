@@ -13,7 +13,6 @@ class GuitarViewModel {
     var guitars = [Guitar]()
     
     func fetchGuitarsData(completion: @escaping () -> ()) {
-        
         apiService.getGuitarsData { [weak self] (result) in
             switch result {
             case .success(let guitarList):
@@ -25,17 +24,20 @@ class GuitarViewModel {
         }
     }
     
-    func searchGuitars(skU_ID: String = "", productDetail: String = "") -> [Guitar] {
-        if skU_ID.isEmpty == false {
-            var guitar: [Guitar] = GuitarData().guitarData.filter({ $0.skU_ID == skU_ID })
-            return guitar
-        } else if productDetail.isEmpty == false {
-            var guitar: [Guitar] = GuitarData().guitarData.filter({ $0.productDetail == productDetail })
-            return guitar
+    func searchGuitarsData(identifier: String, completion: @escaping () -> ()) {
+        apiService.getGuitarsData { [weak self] (result) in
+            switch result {
+            case .success(let guitarList):
+                var searchedGuitars = [Guitar]()
+                searchedGuitars += guitarList.filter {  $0.brandName == identifier }
+                self?.guitars = searchedGuitars
+                print(searchedGuitars)
+                completion()
+            case .failure(let error):
+                print("Error processing JSON data: \(error)")
+            }
         }
-        return guitars
     }
-    
     
     func numberOfItemsInSection(section: Int) -> Int {
         if guitars.count != 0 {

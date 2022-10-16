@@ -13,12 +13,13 @@ class GuitarCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var stockLabel: UILabel!
+    @IBOutlet weak var brandLabel: UILabel!
     
     func setCellWithValuesOf(_ guitar: Guitar) {
-        updateUI(title: guitar.itemName, price: guitar.salesPrice, stock: guitar.qtyInStock, imageUrl: guitar.pictureMain)
+        updateUI(title: guitar.itemName, price: guitar.salesPrice, stock: guitar.qtyInStock, imageUrl: guitar.pictureMain, brandName: guitar.brandName)
     }
     
-    func updateUI(title: String?, price: Double?, stock: Int?, imageUrl: String?) {
+    func updateUI(title: String?, price: Double?, stock: Int?, imageUrl: String?, brandName: String?) {
         
         self.titleLabel.text = title!
         
@@ -28,6 +29,9 @@ class GuitarCollectionViewCell: UICollectionViewCell {
             self.stockLabel.text = "Out of Stock"
         }
         
+        self.brandLabel.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        self.brandLabel.text = brandName?.uppercased()
+        
         self.priceLabel.text = "£\(String(format: "%.2f", price!))"
         
         guard let guitarImageURL = URL(string: imageUrl!) else {
@@ -35,13 +39,11 @@ class GuitarCollectionViewCell: UICollectionViewCell {
             return
         }
         
-        // Before we download the image we clear out the old one
         self.imageView.image = nil
         getImageDataFrom(url: guitarImageURL)
         
     }
     
-    // MARK: - Get image data
     func getImageDataFrom(url: URL) {
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
@@ -49,7 +51,6 @@ class GuitarCollectionViewCell: UICollectionViewCell {
                 return
             }
             guard let data = data else {
-                // Handle Empty Data
                 print("Empty Data")
                 return
             }
@@ -59,20 +60,6 @@ class GuitarCollectionViewCell: UICollectionViewCell {
                 }
             }
         }.resume()
-    }
-    
-    // MARK: - Convert date format
-    func convertDateFormater(_ date: String?) -> String {
-        var fixDate = ""
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        if let originalDate = date {
-            if let newDate = dateFormatter.date(from: originalDate) {
-                dateFormatter.dateFormat = "dd.MM.yyyy"
-                fixDate = dateFormatter.string(from: newDate)
-            }
-        }
-        return fixDate
     }
     
 }

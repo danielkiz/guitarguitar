@@ -22,6 +22,7 @@ class GuitarViewController: UIViewController {
     @IBOutlet weak var startingImageView: UIImageView!
     @IBOutlet weak var startingTitleLabel: UILabel!
     @IBOutlet weak var startingPrice: UILabel!
+    @IBOutlet weak var startingFavouritesButton: UIButton!
     
     @IBOutlet weak var specsView: UIView!
     @IBOutlet weak var specsTitleLabel: UILabel!
@@ -33,6 +34,9 @@ class GuitarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        startingFavouritesButton.layer.cornerRadius = 12
+        startingFavouritesButton.layer.masksToBounds = true
         
         loadGuitarSongs(id: (guitar?.skU_ID!)!)
         
@@ -59,6 +63,20 @@ class GuitarViewController: UIViewController {
             range: range, withTemplate: "")
         
         specsDescription.text = htmlLessString
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+            
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(handleGesture))
+        swipeDown.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        specsView.layer.shadowColor = UIColor.lightGray.cgColor
+        specsView.layer.cornerRadius = 18
+        specsView.layer.shadowOpacity = 1
+        specsView.layer.shadowOffset = .zero
+        specsView.layer.shadowRadius = 3
     }
     
     func loadGuitarSongs(id: String) {
@@ -92,6 +110,9 @@ class GuitarViewController: UIViewController {
         }.resume()
     }
     
+    @IBAction func addFavouritesAction(_ sender: Any) {
+        
+    }
     
     @IBAction func listenSpotifyAction(_ sender: Any) {
         if spotifyLink?.isEmpty == false {
@@ -116,6 +137,20 @@ class GuitarViewController: UIViewController {
         UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
             self.specsView.isHidden = true
         })
+    }
+    
+    @objc func handleGesture(gesture: UISwipeGestureRecognizer) -> Void {
+        if gesture.direction == .up {
+            UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.specsView.isHidden = false
+            })
+       }
+       else if gesture.direction == .down {
+           UIView.transition(with: specsView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+               self.specsView.isHidden = true
+           })
+
+       }
     }
     
 }

@@ -7,15 +7,12 @@
 
 import Foundation
 
-struct GuitarSong: Decodable {
+struct GuitarSong: Codable {
     
     let skU_ID: String?
     let spotifyId: String?
     let youtubeUrl: String?
     
-    enum CodingKeys: String, CodingKey {
-        case skU_ID, spotifyId, youtubeUrl
-    }
 }
 
 struct GuitarSongData: Decodable {
